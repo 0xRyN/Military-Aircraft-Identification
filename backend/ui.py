@@ -134,8 +134,7 @@ class AircraftDetectorUI:
                 continue
 
             resized_img = cv2.resize(cropped_img, (256, 256))
-            normalized = resized_img / 255.0
-            expanded = np.expand_dims(normalized, axis=0).astype(np.float32)
+            expanded = np.expand_dims(resized_img, axis=0).astype(np.float32)
             class_id, confidence = self.classifier.classify(expanded)
             st.text(f"Class ID: {class_id}, Confidence: {confidence}")
             aircraft_class = CLASSES[class_id]
